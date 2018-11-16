@@ -32,8 +32,8 @@ public class ChainConsole {
 	
 	private static void buildBookChains() {
 		try {
-			sherlockChain = populator.populateMarkovChains("books/The_Adventures_of_Sherlock_Holmes.txt");
-			littleHouseChain = populator.populateMarkovChains("books/Little_House_In_The_Big_Woods.txt");
+			sherlockChain = populator.populateMarkovChains("books/The_Adventures_of_Sherlock_Holmes2.txt");
+			littleHouseChain = populator.populateMarkovChains("books/Little_House_In_The_Big_Woods2.txt");
 		} catch (FileNotFoundException fnfe) {
 			System.out.println("The book files were not found.");
 			System.exit(1);
@@ -71,17 +71,15 @@ public class ChainConsole {
 		
 		if(answer.equals("sherlock")) {
 			printGobbledygook(sherlockChain);
+			promptUserForTask();
 		}
 		if(answer.equals("woods")) {
 			printGobbledygook(littleHouseChain);
+			promptUserForTask();
 		}
 		if(answer.equals("exit")) {
 			System.out.println("Now exiting...");
 			System.exit(0);
-		}
-		else {
-			System.out.println("Please input valid book.");
-			promptUserForTask();
 		}
 	}
 

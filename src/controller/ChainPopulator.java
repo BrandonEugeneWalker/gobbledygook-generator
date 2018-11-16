@@ -10,6 +10,7 @@ import model.MarkovChain;
 
 /**
  * Creates a new ChainPopulator.
+ * 
  * @author brandon walker
  *
  */
@@ -28,19 +29,18 @@ public class ChainPopulator {
 		source = new Scanner(new File(filePath));
 		String prev = null;
 		while (source.hasNext()) {
-			String nextLine = source.nextLine().toLowerCase().replaceAll("\\p{P}+$", "");
-			String[] newNodes = nextLine.split(" ");
+			String nextLine = source.nextLine().toLowerCase();
+			String replacedPunct = nextLine.replaceAll("\\p{P}", "");
+			String[] newNodes = replacedPunct.split(" ");
 			ArrayList<String> arrayNodes = new ArrayList<String>(Arrays.asList(newNodes));
 			for (String currentWord : arrayNodes) {
-				String trimmedWord = currentWord.trim();
-				String strippedWord = trimmedWord.toLowerCase();
-				if (strippedWord.equals("")) {
+				if (currentWord.equals("")) {
 					continue;
 				} else {
 					if (prev != null) {
-						markovChain.addInnerNode(prev, strippedWord);
+						markovChain.addInnerNode(prev, currentWord);
 					} else {
-						markovChain.addOuterNode(strippedWord);
+						markovChain.addOuterNode(currentWord);
 					}
 					prev = currentWord;
 				}
